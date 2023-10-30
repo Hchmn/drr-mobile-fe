@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 
 const Splash = ({ navigation }) => {
 
@@ -8,14 +8,14 @@ const Splash = ({ navigation }) => {
 
     setTimeout(() => {
       navigation.replace('LoginScreen');
-    }, 3000)
+    }, 2500)
   }, []);
 
   return (
     <View style={styles.container}>
       <Image
         alt='Logo'
-        source={require("../../assets/images/logo.png")}
+        source={require("../../assets/images/logo2.png")}
         style={styles.logo}
       />
     </View>
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 350,
-    height: 350,
+    height: 200,
   },
 });
 
