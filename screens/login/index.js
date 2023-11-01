@@ -1,12 +1,20 @@
-import React from 'react';
-import {Dimensions, Image, ScrollView, StyleSheet, View} from 'react-native';
+import React, { useState } from 'react';
+import {Dimensions, Image, KeyboardAvoidingView, ScrollView, StyleSheet, View} from 'react-native';
 
-import {LoginForm} from '../../components';
+import {LoginForm, RegistrationForm} from '../../components';
 import {Layout, Text} from '@ui-kitten/components';
 
 const Login = ({}) => {
+  const [component, setComponent] = useState("LOGIN");
+
+  const components = {
+    LOGIN: LoginForm,
+    REGISTRATION: RegistrationForm
+  }
+  const NavigationComponent = components[component];
+
   return (
-    <ScrollView>
+    <KeyboardAvoidingView style={{display:"flex"}}>
       <View style={styles.upperSection}>
         <Image
           alt="Logo"
@@ -16,9 +24,9 @@ const Login = ({}) => {
         <Text style={styles.text}>Login to your account</Text>
       </View>
       <Layout style={styles.lowerSection}>
-        <LoginForm />
+        <NavigationComponent handleChangeComponent={setComponent}/>
       </Layout>
-    </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -27,12 +35,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   upperSection: {
-    height: Dimensions.get('screen').height * 0.4,
+    height: Dimensions.get('screen').height * 0.40,
     justifyContent: 'center',
     alignItems: 'center',
   },
   lowerSection: {
-    height: Dimensions.get('screen').height * 0.6,
+    height: Dimensions.get('screen').height * 0.60,
     backgroundColor: '#090428',
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,

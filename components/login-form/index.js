@@ -4,7 +4,7 @@ import {Button, Icon, Input, Text} from '@ui-kitten/components';
 import {TouchableWithoutFeedback} from '@ui-kitten/components/devsupport';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-export const LoginForm = ({navigation}) => {
+export const LoginForm = ({navigation, handleChangeComponent}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -54,33 +54,46 @@ export const LoginForm = ({navigation}) => {
             width: Dimensions.get('screen').width * 0.75,
             marginBottom: '5%',
           }}>
-          <Text
-            style={[
-              styles.link,
-              {textDecorationLine: 'none', textAlign: 'right'},
-            ]}>
-            Forgot Password
-          </Text>
+          <TouchableOpacity style={{width: 'auto', alignSelf: 'flex-end'}}>
+            <Text
+              style={[
+                styles.link,
+                {textDecorationLine: 'none', textAlign: 'right'},
+              ]}>
+              Forgot Password
+            </Text>
+          </TouchableOpacity>
         </View>
 
-        <Button style={styles.button} status="control" size="large">
-          LOGIN
-        </Button>
-      </View>
-
-      <View
-        style={{
-          width: Dimensions.get('screen').width,
-          height: 40,
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Text>Don't have an account? </Text>
-        <TouchableOpacity>
-          <Text style={styles.link}>Sign up</Text>
+        <TouchableOpacity
+          style={{
+            width: 200,
+            alignSelf: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Button style={styles.button} status="control" size="large">
+            LOGIN
+          </Button>
         </TouchableOpacity>
+
+        <View
+          style={{
+            width: Dimensions.get('screen').width,
+            height: 40,
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+          }}>
+          <Text>Don't have an account? </Text>
+          <TouchableOpacity
+            onPress={() => {
+              handleChangeComponent('REGISTRATION');
+            }}>
+            <Text style={styles.link}>Sign up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </>
   );
@@ -108,7 +121,7 @@ const styles = StyleSheet.create({
 
   button: {
     marginTop: 5,
-    width: '50%',
+    width: '100%',
     height: 45,
     textAlign: 'center',
     backgroundColor: '#fff',
